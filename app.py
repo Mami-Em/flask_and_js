@@ -1,12 +1,13 @@
 from crypt import methods
-import os,requests
+import requests
 from urllib import request
 from flask import Flask, render_template, jsonify, request
+from api import api_key
 
 app = Flask('__name__')
 
 # API key
-API_key = os.getenv('API_KEY')
+key = api_key()
 
 @app.route('/')
 def index():
@@ -18,7 +19,7 @@ def get_weather():
 
     # query for getting weather of a city
     city = request.form.get('city')
-    res = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API_key}')
+    res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={key}")
 
     # make sure request succeded
     # if res.status_code != 200:
@@ -29,4 +30,4 @@ def get_weather():
     # if city not in data['']:
     #     ...
 
-    return jsonify(res)
+    return jsonify(res.json())
