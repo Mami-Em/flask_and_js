@@ -22,12 +22,18 @@ def get_weather():
     res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={key}")
 
     # make sure request succeded
-    # if res.status_code != 200:
-    #     return jsonify({'success': False})
+    if res.status_code != 200:
+        return jsonify({'success': False})
 
+    # get country's weather and country's details
+    data = res.json()
+    ans = {
+        'code': data['sys']['country'],
+        'desc': data['weather'][0]['description'],
+        'temp': data['main']['temp']
+    }
 
-    # data = res.json()
-    # if city not in data['']:
-    #     ...
+    return jsonify({'success': True, 'val': ans})
 
-    return jsonify(res.json())
+    
+

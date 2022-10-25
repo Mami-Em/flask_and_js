@@ -5,8 +5,10 @@ Python x Ajax x SocketIO
 {% endblock %}
 
 {% block content %}
-<form action="/get_weather" method="post">
-    <input type="text" name="city" placeholder="Name of a city">
+<form id="weather_form">
+    <input type="text" name="city" id="city" placeholder="Name of a city">
     <input type="submit">
 </form>
+
+<div id="weather_result"></div>
 {% endblock %}
