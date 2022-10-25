@@ -1,10 +1,14 @@
 from crypt import methods
-import requests
+import requests, os
 from urllib import request
 from flask import Flask, render_template, jsonify, request
 from api import api_key
+from flask_socketio import SocketIO, emit
 
 app = Flask('__name__')
+
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 # API key
 key = api_key()
@@ -36,4 +40,9 @@ def get_weather():
     return jsonify({'success': True, 'val': ans})
 
     
+
+@socketio.on('submit vote')
+def vote(data):
+    selection = data['selection']
+    emit('announce vote', {'selection': selection}, broadcast = True)
 
