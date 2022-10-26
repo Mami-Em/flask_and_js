@@ -2,11 +2,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // connect to wwebsoccket
-    var socket = io.connect(location.protocol + '//' + location.domain + ':' + location.host);
+    var socket = io.connect('http://127.0.0.1:5000');
 
     // when connected change buttons
     socket.on('connect', () => {
 
+        // button on click
         document.querySelectorAll('button').forEach(button => {
             button.onclick = () => {
                 const selection = button.dataset.vote;

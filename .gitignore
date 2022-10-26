@@ -1,2 +1,5 @@
 api.py
 .env
+
+
+# make sure version of socket io matches

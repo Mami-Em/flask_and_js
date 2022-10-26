@@ -5,10 +5,13 @@ from flask import Flask, render_template, jsonify, request
 from api import api_key
 from flask_socketio import SocketIO, emit
 
+
+
 app = Flask('__name__')
 
-app.config['SECRET_KEY'] = 'secret!'
+app.config['SECRET_KEY'] = 'secret'
 socketio = SocketIO(app)
+
 
 # API key
 key = api_key()
@@ -46,3 +49,6 @@ def vote(data):
     selection = data['selection']
     emit('announce vote', {'selection': selection}, broadcast = True)
 
+
+# if __name__ == '__main__':
+#     socketio.run(app)
