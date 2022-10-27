@@ -24,7 +24,10 @@ Python x Ajax x SocketIO
     </h2>
 
     <div>
-        <ul id="votes"></ul>
+        <div>Yes: <span id="yes">{{ votes['yes'] }}</span></div>
+        <div>No: <span id="no">{{ votes['no'] }}</span></div>
+        <div>Maybe: <span id="maybe">{{ votes['maybe'] }}</span></div>
+
         <button data-vote="yes">yes</button>
         <button data-vote="no">no</button>
         <button data-vote="maybe">maybe</button>

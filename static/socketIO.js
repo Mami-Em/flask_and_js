@@ -18,9 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // when a new vote is announced, add the unnordered list
-    socket.on('announce vote', data => {
-        const li = document.createElement('li');
-        li.innerHTML = `Vote recorded: ${data.selection}`;
-        document.querySelector('#votes').append(li);
+    socket.on('vote totals', data => {
+        // const li = document.createElement('li');
+        // li.innerHTML = `Vote recorded: ${data.selection}`;
+        // document.querySelector('#votes').append(li);
+        document.querySelector('#yes').innerHTML = data.yes;
+        document.querySelector('#no').innerHTML = data.no;
+        document.querySelector('#maybe').innerHTML = data.maybe;
     });
 });
